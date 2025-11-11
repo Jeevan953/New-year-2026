@@ -144,12 +144,20 @@
     }
 
     /* Floating text particles */
-    .floatText {
-        position: absolute;
-        font-size: 1.2rem;
-        color: rgba(255,255,255,0.7);
-        animation: floatUp 6s linear forwards;
-    }
+.floatText {
+    position: absolute;
+    font-size: 1.6rem;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8),
+                 0 0 15px rgba(255, 255, 255, 0.6),
+                 0 0 25px rgba(255, 255, 255, 0.4);
+    animation: floatUp 6s linear forwards;
+    pointer-events: none;
+    user-select: none;
+    opacity: 0.9;
+}
+
 
     @keyframes floatUp {
         0% { transform: translateY(0); opacity: 1; }
@@ -231,17 +239,29 @@
             }
         }
 
-        // Floating text
-        function floatingText() {
-            const words = ['🎉 Cheers!', '✨ Shine Bright!', '🎆 2026!', '💫 New Beginnings!', '🌟 Joy & Peace!'];
-            const text = document.createElement('div');
-            text.className = 'floatText';
-            text.textContent = words[Math.floor(Math.random() * words.length)];
-            text.style.left = Math.random() * 80 + '%';
-            text.style.top = '70%';
-            document.body.appendChild(text);
-            setTimeout(() => text.remove(), 6000);
-        }
+       // Floating text
+function floatingText() {
+    const words = [
+        '🎉 <b>Cheers!</b>',
+        '✨ <b>Shine Bright!</b>',
+        '🎆 <b>2026!</b>',
+        '💫 <b>New Beginnings!</b>',
+        '🌟 <b>Joy & Peace!</b>',
+        '💖 <b>Celebrate Life!</b>',
+        '🎇 <b>Happiness Always!</b>'
+    ];
+
+    const text = document.createElement('div');
+    text.className = 'floatText';
+    text.innerHTML = words[Math.floor(Math.random() * words.length)];
+
+    text.style.left = Math.random() * 80 + '%';
+    text.style.top =  '70%';
+    text.style.transform = `rotate(${Math.random() * 10 - 5}deg)`;
+
+    document.body.appendChild(text);
+    setTimeout(() => text.remove(), 6000);
+}
 
         // Random fireworks
         function launchFireworks() {
